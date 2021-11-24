@@ -4,6 +4,7 @@ const printDiv = document.getElementById('print-email-find');
 // Chiedo all'utente la sua mail
 const email = prompt('Inserisci la tua email');
 let emailFind = false;
+//verifico presenza email nella mia lista
 for (let i = 0;i < list.length;i++) {
     if(email == list[i]) {
         emailFind = true;
@@ -12,6 +13,6 @@ for (let i = 0;i < list.length;i++) {
 //stampa se trovato
 if(emailFind) {
     printDiv.innerHTML = 'Email trovata con successo';
-} else {
+} else { //stampo che non é stata trocata la email
     printDiv.innerHTML = 'Email non trovata';
 }
