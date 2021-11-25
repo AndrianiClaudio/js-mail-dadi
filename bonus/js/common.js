@@ -27,24 +27,30 @@ const list = ['user1@gmail.com', 'user2@gmail.com', 'user3@gmail.com', 'user4@gm
 const button = document.getElementById('submit-mail');
 const addEmail = document.getElementById('add-new-mail');
 const printDiv = document.getElementById('print-email-find');
-let text='';
+let text='Non hai inserito nulla, non posso controllare!';
+//ottengo email digitata da utente
 const emailForm = document.getElementById('email-input');
 // Evento:in attesa del click sul bottone
 button.addEventListener('click', function () {
-    //ottengo email digitata da utente
-    //leggo la lista e controllo se la mail é presente
-    for (let i = 0; i < list.length; i++) {
-        //per ogni elemento della lista controllo se é presente il valore. aggiunto un break per non usare un do - while / while
-        if (emailForm.value == list[i]) {
-            text = 'la tua email risulta essere presente nella lista';
-            addEmail.classList.remove('d-block');
-            addEmail.classList.add('d-none');
-            break;
-        }
-        else { //mostra bottone aggiungi
-            text = 'La tua email non risulta essere presente nella lista';
-            addEmail.classList.remove('d-none');
-            addEmail.classList.add('d-block');
+    if(emailForm.value == '') {
+        text = 'Non hai inserito nulla, non posso controllare!';
+    }
+    else {
+        //leggo la lista e controllo se la mail é presente
+        let check=false;
+        for (let i = 0; i < list.length && !check; i++) {
+            //per ogni elemento della lista controllo se é presente il valore. aggiunto un break per non usare un do - while / while
+            if (emailForm.value == list[i]) {
+                text = 'la tua email risulta essere presente nella lista';
+                addEmail.classList.remove('d-block');
+                addEmail.classList.add('d-none');
+                check=true;
+            }
+            else { //mostra bottone aggiungi
+                text = 'La tua email non risulta essere presente nella lista';
+                addEmail.classList.remove('d-none');
+                addEmail.classList.add('d-block');
+            }
         }
     }
     printDiv.innerHTML = text;

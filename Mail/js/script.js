@@ -6,13 +6,19 @@ const button = document.getElementById('submit-mail');
 button.addEventListener('click', function (){
     //ottengo email digitata da utente
     const email = document.getElementById('email-input').value;
-    //leggo la lista e controllo se la mail é presente
     let text = 'La tua email non risulta essere presente nella lista';
-    for (let i = 0;i < list.length;i++) {
-        //per ogni elemento della lista controllo se é presente il valore. aggiunto un break per non usare un do - while / while
-        if(email == list[i]) {
-            text = 'la tua email risulta essere presente nella lista';
-            break;
+    if(email == '') {
+        text = 'Non hai inserito nulla, non posso controllare!'
+    }
+    else {
+        let check = false;
+        //leggo la lista e controllo se la mail é presente
+        for (let i = 0;i < list.length && !check;i++) {
+            //per ogni elemento della lista controllo se é presente il valore. aggiunto un break per non usare un do - while / while
+            if(email == list[i]) {
+                text = 'la tua email risulta essere presente nella lista';
+                check=true;
+            }
         }
     }
     const printDiv = document.getElementById('print-email-find');
